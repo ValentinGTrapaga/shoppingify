@@ -13,7 +13,8 @@
     "@supabase/supabase-js": "2.37.0",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "zustand": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "latest",

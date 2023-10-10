@@ -1,12 +1,28 @@
 import { type Database, type CategoryWithItems } from '@/database.types'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
+import { AsideSection } from './components/AsideSection'
+import { ItemsSection } from './components/ItemsSection'
+import { NoItemsCreatedSection } from './components/NoItemsCreatedSection'
+import { NewList } from './components/NewList'
+import { AddItemForm } from './components/AddItemForm'
 
-export default async function Home () {
+export default async function Home({ searchParams }: { searchParams: Record<string, string> }) {
+  const { newList, addItem } = searchParams
   const supabase = createServerComponentClient<Database>({ cookies })
+  const {
+    data: { session }
+  } = await supabase.auth.getSession()
   const { data: itemsData } = await supabase
     .from('items')
     .select('*, categories(*)')
+    .eq('user_id', session?.user.id)
+
+  const { data: categories } = await supabase.from('categories').select('name')
+
+  const categoriesArray = categories?.map(category => category.name)
+
   const categoriesDraft = itemsData?.reduce<CategoryWithItems[]>(
     (acc, item) => {
       const categoryName = acc.find(
@@ -26,24 +42,21 @@ export default async function Home () {
     []
   )
 
+  if (!session) {
+    redirect('/login')
+  }
+
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24 bg-gradient-to-t from-amber-100 to-yellow-50'>
-      <section>
-        {categoriesDraft?.map((category) => {
-          return (
-            <>
-              <h3 className='text-xl underline'>{category.name}</h3>
-              <ul key={category.name}>
-                {category.items.map((item) => (
-                  <li key={item.id}>
-                    {item.name} - ${item.price}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )
-        })}
-      </section>
-    </main>
+    <div className='flex md:flex-row flex-col-reverse'>
+      {categoriesDraft ? (<ItemsSection categoriesArray={categoriesDraft} />) : <NoItemsCreatedSection />}
+      {newList && (
+        <AsideSection className='bg-secondary-background '>
+          <NewList />
+        </AsideSection>)}
+      {addItem && (
+        <AsideSection className='bg-primary-background'>
+          <AddItemForm categories={categoriesArray} />
+        </AsideSection>)}
+    </div >
   )
 }

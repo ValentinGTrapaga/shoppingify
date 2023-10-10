@@ -4,17 +4,28 @@ const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
-    },
+      colors: {
+        'primary-background': '#fafafe',
+        'secondary-background': '#fff0de',
+        'primary-accent': '#f9a109',
+        'dark-accent': '#80485b',
+        'ligh-accent': '#56ccf2',
+        white: '#ffffff'
+      },
+      dropShadow: {
+        itemBox: '0px 2px 12px #00000010'
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 }
 export default config
