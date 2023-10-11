@@ -5,11 +5,9 @@ import { redirect } from 'next/navigation'
 import { AsideSection } from './components/AsideSection'
 import { ItemsSection } from './components/ItemsSection'
 import { NoItemsCreatedSection } from './components/NoItemsCreatedSection'
-import { NewList } from './components/NewList'
-import { AddItemForm } from './components/AddItemForm'
+import { formatItemsByCategory } from './utils/formatItems'
 
-export default async function Home({ searchParams }: { searchParams: Record<string, string> }) {
-  const { newList, addItem } = searchParams
+export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies })
   const {
     data: { session }
@@ -19,28 +17,9 @@ export default async function Home({ searchParams }: { searchParams: Record<stri
     .select('*, categories(*)')
     .eq('user_id', session?.user.id)
 
-  const { data: categories } = await supabase.from('categories').select('name')
+  const { data: categories } = await supabase.from('categories').select('*')
 
-  const categoriesArray = categories?.map(category => category.name)
-
-  const categoriesDraft = itemsData?.reduce<CategoryWithItems[]>(
-    (acc, item) => {
-      const categoryName = acc.find(
-        (accItem) => accItem.name === item?.categories?.name
-      )
-      if (!categoryName && item && item.categories?.name) {
-        acc.push({
-          name: item?.categories?.name,
-          items: [item]
-        })
-      } else if (categoryName) {
-        categoryName.items.push(item)
-      }
-
-      return acc
-    },
-    []
-  )
+  const categoriesDraft = itemsData && formatItemsByCategory(itemsData)
 
   if (!session) {
     redirect('/login')
@@ -49,14 +28,7 @@ export default async function Home({ searchParams }: { searchParams: Record<stri
   return (
     <div className='flex md:flex-row flex-col-reverse'>
       {categoriesDraft ? (<ItemsSection categoriesArray={categoriesDraft} />) : <NoItemsCreatedSection />}
-      {newList && (
-        <AsideSection className='bg-secondary-background '>
-          <NewList />
-        </AsideSection>)}
-      {addItem && (
-        <AsideSection className='bg-primary-background'>
-          <AddItemForm categories={categoriesArray} />
-        </AsideSection>)}
+      <AsideSection categories={categories} />
     </div >
   )
 }
