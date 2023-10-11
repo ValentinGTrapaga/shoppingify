@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { ChartSVG, ClockSVG, ListSVG } from './icons'
-import { ShoppingCartButton } from './ShoppingCartButton'
+import { ItemsListButton } from './ItemsListButton'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { LogOutButton } from './LogOutButton'
@@ -11,11 +11,11 @@ export const NavBar = async () => {
   const { data: { session } } = await supabase.auth.getSession()
 
   return (
-    <nav className='w-[48px] md:w-[72px] fixed h-screen top-0 left-0 px-1 py-4 flex flex-col items-center justify-between gap-6 bg-white shadow-sm'>
+    <nav className='w-[48px] md:w-[60px] fixed h-screen top-0 left-0 px-1 py-4 flex flex-col items-center justify-between gap-6 bg-white shadow-sm'>
       <Link href='/' className='text-lg font-bold'>Sfy</Link>
       <ul className='w-6 flex flex-col gap-8'>
         <li className='hover:drop-shadow-itemBox'>
-          <Link href='#'>
+          <Link href='/lists'>
             <ListSVG />
           </Link>
         </li>
@@ -41,7 +41,7 @@ export const NavBar = async () => {
           : (null)
         }
       </ul>
-      <ShoppingCartButton />
+      <ItemsListButton />
     </nav>
   )
 }
