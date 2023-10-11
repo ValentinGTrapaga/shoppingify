@@ -1,8 +1,9 @@
 import { InputCategories, InputItem, InputTextarea } from './InputItem'
-import { CancelSubmitButton, FormSubmitButton } from './Buttons'
+import { CancelSubmitButton, FormSubmitButton } from './AddItemFormButtons'
 import { createItem } from '../actions'
+import { type Category } from '@/database.types'
 
-export const AddItemForm = ({ categories }: { categories: string[] }) => {
+export const AddItemForm = ({ categories }: { categories: Category[] }) => {
   return (
     <form
       action={createItem}

@@ -12,7 +12,7 @@ export const TitleListPage = () => {
         <input
           type='text'
           placeholder='avocado, banana...'
-          className='px-4 py-4 rounded-md shadow-sm'
+          className='px-4 py-4 rounded-md shadow-sm border-black border-2 bg-white'
         />
         <button
           type='submit'

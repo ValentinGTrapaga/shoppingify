@@ -1,9 +1,9 @@
 import React from 'react'
 import { TitleListPage } from './TitleListPage'
 import { CategoryList } from './CategoryList'
-import { type CategoryWithItems } from '@/database.types'
+import { type ItemWithCategory, type CategoryWithItems } from '@/database.types'
 
-export const ItemsSection = ({ categoriesArray }: { categoriesArray: CategoryWithItems[] }) => {
+export const ItemsSection = ({ categoriesArray }: { categoriesArray: Array<CategoryWithItems<ItemWithCategory>> }) => {
   if (categoriesArray) {
     return (<section className='md:flex md:w-full flex-1 p-12 flex-col gap-6' >
       <TitleListPage />

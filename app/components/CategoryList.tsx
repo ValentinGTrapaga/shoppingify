@@ -1,11 +1,11 @@
-import { type CategoryWithItems } from '@/database.types'
+import { type ItemWithCategory, type CategoryWithItems } from '@/database.types'
 import React from 'react'
 import { Item } from './Item'
 
 export const CategoryList = ({
   CategoryWithItems
 }: {
-  CategoryWithItems: CategoryWithItems
+  CategoryWithItems: CategoryWithItems<ItemWithCategory>
 }) => {
   const { name, items } = CategoryWithItems
   return (
