@@ -1,11 +1,11 @@
 import React from 'react'
-import { ShoppingSVG } from './ShoppingSVG'
+import { ListsSVG } from './ListsSVG'
 
 export const NoItemsCreatedSection = () => {
   return (
-    <section className='sm:flex hidden w-full flex-1 p-12 flex-col items-center justify-center gap-12' >
-      <p className='font-bold text-4xl text-center'>Looks like you have no items created yet, you can start doing so with the panel on your right </p>
-      <ShoppingSVG className='w-96' />
+    <section className='sm:flex min-h-screen w-full flex-col p-12 md:px-24 items-center justify-center gap-12' >
+      <p className='font-bold text-2xl sm:text-4xl text-center'>Looks like you have no items created yet, you can start doing so with the panel on your right </p>
+      <ListsSVG cls='w-96' />
     </section >
   )
 }

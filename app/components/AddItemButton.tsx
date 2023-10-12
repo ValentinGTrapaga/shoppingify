@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import React from 'react'
 import { AddItemIconSVG } from './AddItemIcon'
 import { useItemsStore } from '../store'

@@ -1,5 +1,4 @@
 'use client'
-
 import React from 'react'
 import { useItemsStore } from '../store'
 import { NewList } from './NewList'
@@ -16,7 +15,8 @@ export const AsideSection = ({ categories }: { categories: Category[] }) => {
   }
 
   if (asideSectionName === 'none') return null
-  return (<aside className='w-[calc(100%-48px)] md:w-96 min-h-screen gap-4 py-12 px-8 items-center absolute right-0 top-0 border-l-2 border-amber-100 bg-secondary-background'>
-    {asideSectionJSX[asideSectionName]}
-  </aside>)
+  return (
+    <aside className='w-[calc(100%-48px)] md:w-96 h-screen py-12 px-8 fixed right-0 top-0 border-l-2 border-amber-100 bg-secondary-background flex flex-col gap-4'>
+      {asideSectionJSX[asideSectionName]}
+    </aside>)
 }
