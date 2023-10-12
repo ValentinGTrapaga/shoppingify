@@ -1,4 +1,4 @@
-import { type Database, type CategoryWithItems } from '@/database.types'
+import { type Database } from '@/database.types'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -12,23 +12,23 @@ export default async function Home() {
   const {
     data: { session }
   } = await supabase.auth.getSession()
-  const { data: itemsData } = await supabase
-    .from('items')
-    .select('*, categories(*)')
-    .eq('user_id', session?.user.id)
-
-  const { data: categories } = await supabase.from('categories').select('*')
-
-  const categoriesDraft = itemsData && formatItemsByCategory(itemsData)
 
   if (!session) {
     redirect('/login')
   }
 
+  const { data: itemsData } = await supabase
+    .from('items')
+    .select('*, categories(*)')
+    .eq('user_id', session.user.id)
+
+  const categoriesDraft = itemsData && formatItemsByCategory(itemsData)
+  const { data: categories } = await supabase.from('categories').select('*')
+
   return (
-    <div className='flex md:flex-row flex-col-reverse'>
+    <>
       {categoriesDraft ? (<ItemsSection categoriesArray={categoriesDraft} />) : <NoItemsCreatedSection />}
       <AsideSection categories={categories} />
-    </div >
+    </>
   )
 }
