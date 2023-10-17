@@ -39,7 +39,7 @@ export default async function RootLayout({
     <html lang='en'>
       <body className={`${quicksand.className} min-h-screen min-w-screen`}>
         <NavBar />
-        <main className='w-full pl-[48px] md:pl-[60px] min-h-screen'>
+        <main className='w-full pl-[48px] md:pl-[60px] min-h-screen bg-primary-background'>
           {children}
           <AsideSection categories={categories} />
         </main>

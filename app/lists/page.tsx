@@ -3,6 +3,10 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { NoListsMessage } from '../components/NoListsMessage'
+import Link from 'next/link'
+import { formatListDate } from './../utils/formatListDate'
+import { CalendarSVG, ChevronRightSVG } from '../components/icons'
+import { ShoppingListCreated } from '../components/ShoppingList'
 
 export default async function Lists() {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -13,7 +17,6 @@ export default async function Lists() {
   }
 
   const { data: lists } = await supabase.from('shopping_lists').select('*').eq('user_id', user?.id)
-  console.log({ lists })
 
   if (lists === null) {
     return (<p>Looks like there has been a problem loading your lists, please refresh the page</p>)
@@ -24,9 +27,18 @@ export default async function Lists() {
       {
         lists.length === 0
           ? (<NoListsMessage />)
-          : (<p>
-            {JSON.stringify(lists)}
-          </p>)
+          : (
+            <div>
+              <ul className='w-full  flex flex-col gap-4'>
+                {lists.map(list => {
+                  const formattedDate = formatListDate(list.created_at)
+                  return (
+                    <ShoppingListCreated list={list} date={formattedDate} key={list.id} />
+                  )
+                }
+                )}
+              </ul>
+            </div>)
       }
     </>
   )
