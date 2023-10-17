@@ -9,7 +9,7 @@ export const Item = ({ item }: { item: ItemWithCategory | StoreItem }) => {
   const params = useParams()
   return (
     <li
-      className='rounded-xl bg-white p-4 grid grid-cols-[1fr,auto] w-48 drop-shadow-itemBox items-center shadow-black justify-between border-2 border-zinc-100'
+      className='rounded-xl bg-white p-4 grid grid-cols-[1fr,auto] w-48 items-center shadow-slate-300 shadow-sm justify-between'
       key={item.id}>
       <p className='font-semibold truncate text-sm'>{item.name}</p>
       {!params.id && <AddItemToShListButton item={item} />}
