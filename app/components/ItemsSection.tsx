@@ -1,12 +1,12 @@
 import React from 'react'
-import { TitleListPage } from './TitleListPage'
 import { CategoryList } from './CategoryList'
 import { type ItemWithCategory, type CategoryWithItems } from '@/database.types'
+import { type StoreItem } from '../store'
 
-export const ItemsSection = ({ categoriesArray }: { categoriesArray: Array<CategoryWithItems<ItemWithCategory>> }) => {
-  return (<section className='md:flex md:w-full flex-1 p-12 flex-col gap-6' >
-    <TitleListPage />
-    <div className='px-16 flex flex-col gap-4'>
+export const ItemsSection = ({ categoriesArray, children }: { categoriesArray: Array<CategoryWithItems<ItemWithCategory | StoreItem>>, children?: React.ReactNode }) => {
+  return (<section className='md:flex md:w-full flex-1 flex-col px-6 gap-6' >
+    {children}
+    <div className='flex flex-col gap-4'>
       {categoriesArray?.map((category) => {
         return (
           <CategoryList
