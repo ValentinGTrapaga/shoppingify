@@ -3,12 +3,10 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { NoListsMessage } from '../components/NoListsMessage'
-import Link from 'next/link'
 import { formatListDate } from './../utils/formatListDate'
-import { CalendarSVG, ChevronRightSVG } from '../components/icons'
 import { ShoppingListCreated } from '../components/ShoppingList'
 
-export default async function Lists() {
+export default async function Page() {
   const supabase = createServerComponentClient<Database>({ cookies })
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -28,7 +26,8 @@ export default async function Lists() {
         lists.length === 0
           ? (<NoListsMessage />)
           : (
-            <div>
+            <section className='px-6 flex flex-col gap-6'>
+              <h2 className='text-2xl font-bold'>Shopping history</h2>
               <ul className='w-full  flex flex-col gap-4'>
                 {lists.map(list => {
                   const formattedDate = formatListDate(list.created_at)
@@ -38,7 +37,7 @@ export default async function Lists() {
                 }
                 )}
               </ul>
-            </div>)
+            </section>)
       }
     </>
   )
