@@ -10,7 +10,7 @@ import { DisplayDate } from '@/app/components/DisplayDate'
 import { DeleteListButton, SaveListButton, ShareListButton } from '@/app/components/ListPageButtons'
 import { CreatedListCategoriesSection } from '@/app/components/ItemsSection'
 
-export default async function Lists({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
   const supabase = createServerComponentClient<Database>({ cookies })
   const { data: { user } } = await supabase.auth.getUser()
   const { id } = params

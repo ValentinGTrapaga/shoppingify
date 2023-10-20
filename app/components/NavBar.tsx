@@ -8,7 +8,7 @@ import { LogOutButton } from './LogOutButton'
 import { ShoppingifyIconSVG } from './ShoppingifyIcon'
 import { NavBarLink } from './NavBarLink'
 
-export const NavBar = async () => {
+export async function NavBar() {
   const supabase = createServerComponentClient({ cookies })
   const { data: { session } } = await supabase.auth.getSession()
 
