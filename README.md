@@ -1,4 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DevChallenges: Shoppingify
+
+Challenge: Create my Shoppingify app. Use any front-end libraries of your choice. Create your API. Don’t look at the existing solution. Fulfill user stories below:
+
+- [x] User story: When I select the items tab, I can see a list of items under different categories.
+- [x] User story: I can add a new item with name, category and note.
+- [ ] User story: When I add a new item, I can select one from the existing categories or add a new one if the category does not exist
+- [x] User story: I can add items to the current list
+- [x] User story: I can increase the number of item in the list
+- [x] User story: I can remove the item from the list
+- [x] User story: I can save/update the list with a name (user can have only one active list at a time)
+- [ ] User story: I can toggle between editing state and completing state
+- [ ] User story: When I am at completing state, I can save my progress by selecting the item
+- [x] User story: I can cancel the active list
+- [ ] User story: When I try to cancel a list, I can see a confirmation notification
+- [x] User story: I can see my shopping history and I can see the details of it
+- [ ] User story: I can see some statistics: top items, top categories, and monthly comparison. (Tips: use libraries like recharts for the graph)
+- [ ] User story (optional): I can search for items
+
+## Modification
+
+I chose to add an user authenticationand login with GitHub and Google in order to also learn more about it. Using cookies to store data, handling sessions, authentication and user storing in SQL databases
 
 ## Getting Started
 
@@ -16,21 +37,6 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`in progress...`
