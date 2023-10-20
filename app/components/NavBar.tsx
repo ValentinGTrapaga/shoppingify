@@ -7,7 +7,6 @@ import { cookies } from 'next/headers'
 import { LogOutButton } from './LogOutButton'
 import { ShoppingifyIconSVG } from './ShoppingifyIcon'
 import { NavBarLink } from './NavBarLink'
-import { ListsSVG } from './ListsSVG'
 
 export const NavBar = async () => {
   const supabase = createServerComponentClient({ cookies })
