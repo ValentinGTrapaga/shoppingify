@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Quicksand } from 'next/font/google'
 import { NavBar } from './components/NavBar'
-import { type Category, type Database } from '@/database.types'
+import { type Database } from '@/database.types'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { LoginPage } from './components/LoginPage'
@@ -25,8 +25,8 @@ export default async function RootLayout({
 
   if (!user) {
     return (
-      <html lang='en'>
-        <body className={`${quicksand.className} min-h-screen min-w-screen`}>
+      <html lang='en' className={quicksand.className}>
+        <body className='min-h-screen min-w-screen'>
           <LoginPage />
         </body>
       </html>
@@ -36,8 +36,8 @@ export default async function RootLayout({
   const { data: categories } = await supabase.from('categories').select('*').eq('user_id', user?.id)
 
   return (
-    <html lang='en'>
-      <body className={`${quicksand.className} min-h-screen min-w-screen`}>
+    <html lang='en' className={quicksand.className}>
+      <body className='min-h-screen min-w-screen'>
         <NavBar />
         <main className='w-full pl-[48px] md:pl-[60px] min-h-screen bg-primary-background py-8'>
           {children}
