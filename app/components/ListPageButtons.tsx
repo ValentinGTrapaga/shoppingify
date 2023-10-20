@@ -15,7 +15,7 @@ export const ShareListButton = () => {
 }
 
 export const SaveListButton = ({ listId }: { listId: string }) => {
-  const handleClick = () => {
+  const handleClick = async () => {
     console.log({ listId })
   }
 

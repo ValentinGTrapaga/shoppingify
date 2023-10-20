@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { AddItemButton } from './AddItemButton'
 import { useItemsStore } from '../store'
 import { formatItemForNewList } from '../utils/formatItems'
