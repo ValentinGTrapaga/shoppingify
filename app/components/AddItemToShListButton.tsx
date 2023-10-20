@@ -13,7 +13,7 @@ export const AddItemToShListButton = ({ item }: { item: ItemWithCategory }) => {
   }
 
   return (
-    <button onClick={addItemClick} className='w-5 h-5'>
+    <button onClick={addItemClick} className='p-2'>
       <PlusSVG cln='w-5 h-5' />
     </button>
   )

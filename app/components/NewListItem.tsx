@@ -7,8 +7,8 @@ export const NewListItem = ({ item }: { item: StoreItem }) => {
   const { removeItem, removeOneItemQuantity, addOneItemQuantityQuantity } = useItemsStore()
 
   return (
-    <li key={item.id} className='flex font-bold items-center justify-between gap-2'><p className='truncate w-[70%] py-2'>{item.name}</p>
-      <span className={`flex gap-1 ${editable ? 'bg-white' : 'bg-transparent'} rounded-lg items-center`}>
+    <li key={item.id} className='flex font-bold items-center justify-between gap-2 '><p className='truncate w-[70%] py-2'>{item.name}</p>
+      <span className={`flex gap-1 ${editable ? 'bg-white' : 'bg-transparent'} rounded-lg items-center drop-shadow-itemBox`}>
         {editable &&
           <>
             <RemoveItemButton onClick={removeItem} itemId={item.id} />

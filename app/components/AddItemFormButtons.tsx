@@ -1,8 +1,15 @@
-import { useItemsStore } from '../store'
+'use client'
 
-export const FormSubmitButton = () => (
-  <button className='font-bold text-white bg-primary-accent px-4 py-2 rounded-md' type='submit'>Save</button>
-)
+import { useItemsStore } from '../store'
+import { experimental_useFormStatus as useFormStatus } from 'react-dom'
+
+export const FormSubmitButton = () => {
+  const { pending } = useFormStatus()
+
+  return (
+    <button className={`font-bold text-white ${pending ? 'animate-pulse' : ''} bg-primary-accent transition-all px-4 py-2 rounded-md`} disabled={pending} type='submit'>{pending ? 'Saving' : 'Save'}</button>
+  )
+}
 
 export const CancelSubmitButton = () => {
   const { changeAsideSection } = useItemsStore()
