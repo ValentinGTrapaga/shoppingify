@@ -5,7 +5,6 @@ import { CancelSubmitButton, FormSubmitButton } from './AddItemFormButtons'
 import { createItem } from '../actions'
 import { type Category } from '@/database.types'
 import { useRef } from 'react'
-import { Modal } from './Modal'
 
 export const AddItemForm = ({ categories }: { categories: Category[] }) => {
   const formRef = useRef<HTMLFormElement>(null)
