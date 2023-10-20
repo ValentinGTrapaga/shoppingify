@@ -9,11 +9,14 @@ import { BackArrowSVG } from '@/app/components/icons'
 import Link from 'next/link'
 import { formatListDate } from '@/app/utils/formatListDate'
 import { DisplayDate } from '@/app/components/DisplayDate'
+import { DeleteListButton, SaveListButton, ShareListButton } from '@/app/components/ListPageButtons'
 
 export default async function Lists({ params }: { params: { id: string } }) {
   const supabase = createServerComponentClient<Database>({ cookies })
   const { data: { user } } = await supabase.auth.getUser()
   const { id } = params
+
+  const currentUserId = user?.id
 
   if (!user) {
     redirect('/login')
@@ -25,7 +28,7 @@ export default async function Lists({ params }: { params: { id: string } }) {
     return (<p>Looks like there has been a problem loading your lists, please refresh the page</p>)
   }
 
-  const { list_name: listName, items_list: itemsList, created_at } = list[0]
+  const { list_name: listName, items_list: itemsList, created_at, user_id: listUserId, id: listId } = list[0]
   const newList = itemsList.map(item => {
     const { name, id, brand, quantity, category_name } = item as StoreItem
     return { id, name, brand, quantity, category_name }
@@ -38,9 +41,16 @@ export default async function Lists({ params }: { params: { id: string } }) {
     <section className='flex flex-col gap-6'>
       <Link href='/lists' className='text-primary-accent flex gap-1 text-xs items-center font-bold ml-6'><BackArrowSVG cls='w-4 h-4' stroke='#f9a109' /> back</Link>
       <ItemsSection categoriesArray={formattedList}>
-        <div className='flex flex-col gap-1 font-bold'>
-          <h2 className='text-2xl md:text-3xl'>{listName}</h2>
-          <DisplayDate date={formattedDate} />
+        <div className='flex justify-between'>
+          <div className='flex flex-col gap-1 font-bold'>
+            <h2 className='text-2xl md:text-3xl'>{listName}</h2>
+            <DisplayDate date={formattedDate} />
+          </div>
+          <div className='flex items-center gap-2'>
+            {currentUserId === listUserId && <DeleteListButton listId={listId} />}
+            <ShareListButton />
+            <SaveListButton listId={listId} />
+          </div>
         </div>
       </ItemsSection>
     </section>
