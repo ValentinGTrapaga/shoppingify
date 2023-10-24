@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   description: 'Dev challenge to gain knowledge on Supabase and NextJS 13'
 }
 
+export const dynamic = 'force-dynamic'
 export default async function RootLayout({
   children
 }: {
