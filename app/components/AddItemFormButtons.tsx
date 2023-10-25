@@ -7,14 +7,28 @@ export const FormSubmitButton = () => {
   const { pending } = useFormStatus()
 
   return (
-    <button className={`font-bold text-white ${pending ? 'animate-pulse' : ''} bg-primary-accent transition-all px-4 py-2 rounded-md`} disabled={pending} type='submit'>{pending ? 'Saving' : 'Save'}</button>
+    <button
+      className={`font-bold text-white ${
+        pending ? 'animate-pulse' : ''
+      } bg-primary-accent transition-all px-4 py-2 rounded-md`}
+      disabled={pending}
+      type="submit"
+    >
+      {pending ? 'Saving' : 'Save'}
+    </button>
   )
 }
 
 export const CancelSubmitButton = () => {
   const { changeAsideSection } = useItemsStore()
 
-  const handleClick = () => { changeAsideSection('listItems') }
+  const handleClick = () => {
+    changeAsideSection('listItems')
+  }
 
-  return (<button onClick={handleClick} className='font-bold '>Cancel</button>)
+  return (
+    <button onClick={handleClick} type="button" className="font-bold ">
+      Cancel
+    </button>
+  )
 }
