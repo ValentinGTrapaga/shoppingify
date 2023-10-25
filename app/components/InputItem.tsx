@@ -3,7 +3,7 @@
 import { type Category } from '@/database.types'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 export const InputItem = ({ name, type }: { name: string; type: string }) => {
   return (
@@ -62,14 +62,14 @@ export const InputCategories = ({
       <span className="flex gap-4 w-full">
         <button
           type="button"
-          className="font-bold text-white bg-red-700 transition-all px-4 py-2 rounded-md"
+          className="font-bold text-white bg-red-700 transition-all px-4 py-2 rounded-md hover:bg-red-800"
           onClick={deleteCategory}
         >
           Delete category
         </button>
         <button
           type="button"
-          className="font-bold text-white bg-primary-accent transition-all px-4 py-2 rounded-md"
+          className="font-bold text-white bg-primary-accent transition-all px-4 py-2 rounded-md hover:bg-yellow-600"
           onClick={toggleAddCategory}
         >
           Add category

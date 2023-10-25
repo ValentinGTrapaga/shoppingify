@@ -4,7 +4,7 @@ Challenge: Create my Shoppingify app. Use any front-end libraries of your choice
 
 - [x] User story: When I select the items tab, I can see a list of items under different categories.
 - [x] User story: I can add a new item with name, category and note.
-- [ ] User story: When I add a new item, I can select one from the existing categories or add a new one if the category does not exist
+- [x] User story: When I add a new item, I can select one from the existing categories or add a new one if the category does not exist
 - [x] User story: I can add items to the current list
 - [x] User story: I can increase the number of item in the list
 - [x] User story: I can remove the item from the list

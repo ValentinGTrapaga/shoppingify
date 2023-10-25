@@ -10,7 +10,7 @@ export const FormSubmitButton = () => {
     <button
       className={`font-bold text-white ${
         pending ? 'animate-pulse' : ''
-      } bg-primary-accent transition-all px-4 py-2 rounded-md`}
+      } bg-primary-accent hover:bg-yellow-600 transition-all px-4 py-2 rounded-md`}
       disabled={pending}
       type="submit"
     >
@@ -27,7 +27,7 @@ export const CancelSubmitButton = () => {
   }
 
   return (
-    <button onClick={handleClick} type="button" className="font-bold ">
+    <button onClick={handleClick} type="button" className="font-bold">
       Cancel
     </button>
   )

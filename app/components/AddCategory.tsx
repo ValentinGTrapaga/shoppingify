@@ -50,7 +50,7 @@ export const AddCategory = ({
         </button>
         <button
           type="button"
-          className="font-bold text-white bg-primary-accent transition-all px-4 py-2 rounded-md"
+          className="font-bold text-white bg-primary-accent hover:bg-yellow-600 px-4 py-2 rounded-md"
           onClick={addCategoryToDB}
         >
           Add
