@@ -5,7 +5,11 @@ import { type ItemWithCategory } from '@/database.types'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useState } from 'react'
 
-export const DeleteItemButton = ({ item }: { item: ItemWithCategory | StoreItem }) => {
+export const DeleteItemButton = ({
+  item
+}: {
+  item: ItemWithCategory | StoreItem
+}) => {
   const [pending, setPending] = useState(false)
   const { id } = item
   const router = useRouter()
@@ -13,7 +17,6 @@ export const DeleteItemButton = ({ item }: { item: ItemWithCategory | StoreItem 
   const supabase = createClientComponentClient()
   const handleDeleteClick = async () => {
     setPending(true)
-    console.log('deleting item', item)
     const { error } = await supabase.from('items').delete().eq('id', id)
     if (!error) {
       router.refresh()
@@ -24,11 +27,13 @@ export const DeleteItemButton = ({ item }: { item: ItemWithCategory | StoreItem 
     <button
       disabled={pending}
       onClick={handleDeleteClick}
-      className='bg-red-600 w-full h-full flex items-center justify-center p-2 rounded-l-lg hover:bg-red-400 '>
-      {pending
-        ? (<SpinSVG cls='w-4 h-4 animate-spin' stroke='#FFF' />)
-        : (<TrashCanSVG cln="w-4 h-4" />)
-      }
+      className="bg-red-600 w-full h-full flex items-center justify-center p-2 rounded-l-lg hover:bg-red-400 "
+    >
+      {pending ? (
+        <SpinSVG cls="w-4 h-4 animate-spin" stroke="#FFF" />
+      ) : (
+        <TrashCanSVG cln="w-4 h-4" />
+      )}
     </button>
   )
 }
