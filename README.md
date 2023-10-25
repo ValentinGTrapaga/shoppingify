@@ -9,17 +9,14 @@ Challenge: Create my Shoppingify app. Use any front-end libraries of your choice
 - [x] User story: I can increase the number of item in the list
 - [x] User story: I can remove the item from the list
 - [x] User story: I can save/update the list with a name (user can have only one active list at a time)
-- [ ] User story: I can toggle between editing state and completing state
-- [ ] User story: When I am at completing state, I can save my progress by selecting the item
 - [x] User story: I can cancel the active list
 - [ ] User story: When I try to cancel a list, I can see a confirmation notification
 - [x] User story: I can see my shopping history and I can see the details of it
 - [ ] User story: I can see some statistics: top items, top categories, and monthly comparison. (Tips: use libraries like recharts for the graph)
-- [ ] User story (optional): I can search for items
 
 ## Modification
 
-I chose to add an user authenticationand login with GitHub and Google in order to also learn more about it. Using cookies to store data, handling sessions, authentication and user storing in SQL databases
+I chose to add an user authentication and login with GitHub and Google in order to also learn more about it. Using cookies to store data, handling sessions, authentication and user storing in SQL databases
 
 ## Getting Started
 

@@ -21,16 +21,19 @@ interface ListItemsStore {
   removeOneItemQuantity: (itemId: number) => void
   removeItem: (itemId: number) => void
   createList: () => Promise<string>
+  addListToStore: (list: StoreItem[]) => void
 }
 
 export const useItemsStore = create<ListItemsStore>()((set, get) => ({
   asideSectionName: 'none',
   items: [],
   listName: 'New List',
-  changeAsideSection: (to) => { set((state) => ({ ...state, asideSectionName: to })) },
+  changeAsideSection: (to) => {
+    set((state) => ({ ...state, asideSectionName: to }))
+  },
   addItemToStore: (itemToAdd) => {
     set((state) => {
-      const item = state.items.find(item => item.id === itemToAdd.id)
+      const item = state.items.find((item) => item.name === itemToAdd.name)
       const { id, name, brand, categories } = itemToAdd
       const itemToStore = { id, name, brand, category_name: categories?.name }
       if (!item) {
@@ -41,30 +44,30 @@ export const useItemsStore = create<ListItemsStore>()((set, get) => ({
       return { ...state }
     })
   },
-  changeListName: newName => {
+  changeListName: (newName) => {
     set((state) => ({ ...state, listName: newName }))
   },
-  addOneItemQuantityQuantity: itemId => {
+  addOneItemQuantityQuantity: (itemId) => {
     set((state) => {
-      const item = state.items.find(item => item.id === itemId)
+      const item = state.items.find((item) => item.id === itemId)
       if (item) {
         item.quantity += 1
       }
       return { ...state }
     })
   },
-  removeOneItemQuantity: itemId => {
+  removeOneItemQuantity: (itemId) => {
     set((state) => {
-      const item = state.items.find(item => item.id === itemId)
+      const item = state.items.find((item) => item.id === itemId)
       if (item && item.quantity > 1) {
         item.quantity -= 1
       }
       return { ...state }
     })
   },
-  removeItem: itemId => {
+  removeItem: (itemId) => {
     set((state) => {
-      const newItemsArray = state.items.filter(item => item.id !== itemId)
+      const newItemsArray = state.items.filter((item) => item.id !== itemId)
       return { ...state, items: newItemsArray }
     })
   },
@@ -73,11 +76,18 @@ export const useItemsStore = create<ListItemsStore>()((set, get) => ({
     const listName = get().listName
     try {
       await sendShoppingList(items, listName)
-      set((state) => { return ({ ...state, items: [] }) })
+      set((state) => {
+        return { ...state, items: [] }
+      })
       return 'La lista fue creada exitosamente'
     } catch (error) {
       console.log(error)
       return 'La lista no pudo crearse'
     }
+  },
+  addListToStore: (list) => {
+    set((state) => {
+      return { ...state, items: list }
+    })
   }
 }))

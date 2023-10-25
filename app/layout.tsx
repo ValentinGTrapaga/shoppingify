@@ -22,25 +22,30 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const supabase = createServerComponentClient<Database>({ cookies })
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
 
   if (!user) {
     return (
-      <html lang='en' className={quicksand.className}>
-        <body className='min-h-screen min-w-screen'>
+      <html lang="en" className={quicksand.className}>
+        <body className="min-h-screen min-w-screen">
           <LoginPage />
         </body>
       </html>
     )
   }
 
-  const { data: categories } = await supabase.from('categories').select('*').eq('user_id', user?.id)
+  const { data: categories } = await supabase
+    .from('categories')
+    .select('*')
+    .eq('user_id', user?.id)
 
   return (
-    <html lang='en' className={quicksand.className}>
-      <body className='min-h-screen min-w-screen'>
+    <html lang="en" className={quicksand.className}>
+      <body className="min-h-screen min-w-screen">
         <NavBar />
-        <main className='w-full pl-[48px] md:pl-[60px] min-h-screen bg-primary-background py-8'>
+        <main className="w-full pl-[48px] md:pl-[60px] min-h-screen bg-primary-background py-8">
           {children}
           <AsideSection categories={categories} />
         </main>
