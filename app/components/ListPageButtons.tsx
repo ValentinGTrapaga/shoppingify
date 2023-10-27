@@ -39,7 +39,7 @@ export const UseListButton = ({ list }: { list: StoreItem[] }) => {
       className="flex gap-1 items-center focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 font-bold rounded-lg text-xs px-4 py-2 "
     >
       <HeartSVG cls="w-4 h-4" stroke="#ffffff" />
-      Use this list
+      Grab this list
     </button>
   )
 }
